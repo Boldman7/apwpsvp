@@ -1,0 +1,543 @@
+.wpsvp-admin{
+	/*margin:0;
+	padding:0;*/
+	/*background: #fff;*/
+	/*margin-bottom: 20px;*/
+    overflow: hidden;
+}
+.wpsvp-bg{
+    background: #fff;
+}
+.wpsvp-admin-inner{
+	margin-left: 20px;
+}
+.wpsvp-admin .form-table th{
+	width: 300px;
+	font-weight: normal;
+}
+.wpsvp-admin .form-table td input[type=text],
+.wpsvp-admin .form-table td input[type=password],
+.wpsvp-admin .form-table td input[type=number],
+.wpsvp-admin .form-table textarea,
+.wpsvp-admin .form-table select{
+	width: 300px;
+}
+.playlist-items-type-info,
+.controls-type-info,
+.playlist-position-info,
+.navigation-type-info{
+	display: none;
+}
+.wpsvp-admin .info{
+	font-size: 13px;
+}
+.wpsvp-admin .info-light{
+	font-size: 13px;
+	color: #acacaa;
+}
+.wpsvp-admin .info-highlight{
+	font-size: 13px;
+	color: #d9534f;
+}
+.wpsvp-admin .info-highlight2{
+	font-size: 13px;
+	color: #0073aa;
+}
+.wpsvp-admin .option-closed{
+	height: 40px;
+	overflow: hidden;
+}
+.wpsvp-admin .option-tab{
+	overflow: hidden;
+    background: #fff;
+}
+.wpsvp-admin .option-tab-divider{
+	height: 20px;
+	background: #f1f1f1;
+}
+.wpsvp-admin .option-toggle{
+	height: 40px;
+	background: #23484d;
+	cursor: pointer;
+}/*
+.wpsvp-admin .option-toggle input[type="checkbox"]{
+    position: absolute;
+    left: 15px;
+    top: 16px;
+}
+.wpsvp-admin .option-toggle-wrap{
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 40px;
+}*/
+.wpsvp-admin .option-title{
+	line-height: 40px;
+    font-size: 15px;
+    color: #fff;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.wpsvp-admin .option-content:not(.wpsvp-edit-playlist){
+	margin-left: 25px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+}
+
+.wpsvp-table tr:hover{
+	background: #f2f5f6;
+}
+.wpsvp-table .wpsvp-media-all{
+    margin: 0; 
+    vertical-align: middle; 
+}
+.ui-sortable-helper {
+    display: table;
+}
+.list-actions{
+    margin-bottom: 5px;
+}
+.list-actions button{
+    cursor: pointer;
+}
+
+#playlist-selector-wrap{
+    margin: 10px 0 10px 20px;
+    display: none;
+}
+#playlist-selector-wrap select, #playlist-selector-wrap button{
+    vertical-align: middle;
+}
+#playlist-selector-wrap button{
+    cursor: pointer;
+}
+
+
+.msort{
+	cursor: move;
+}
+.ui-sortable-helper{/*tr width shrinks while dragging*/
+    display: table;
+}
+#preset-preview{
+	display: block;
+}
+.title-editable{
+	border:0!important;
+    background: #fff!important;
+    width:300px;
+    box-shadow:none!important;
+    padding:0!important;
+    margin:0!important;
+}
+
+
+.multi_path_section,
+.subtitle_section{
+	background: #f1f1f1;
+    float: left;
+    clear: both;
+    padding: 10px;
+    margin-left: -10px;
+    margin-bottom: 10px;
+}
+.multi_path_field_remove{
+	display: none;
+	margin-top: 15px;
+}
+.subtitle_field_remove{
+	margin-top: 15px;
+}
+#multi_path_field_add,
+#subtitle_field_add{
+	float: left;
+	clear: both;
+}
+.subtitle_section{
+	display: none;
+}
+
+
+.wpsvp-actions{
+	display: inline-block;
+    margin: 1em 0;
+}
+
+
+
+.wpsvp-pgn{
+	display: inline-block;
+	float: right;
+}
+.wpsvp-pgn li{
+    display: inline;
+}
+.wpsvp-pgn-btn{
+    color: #333;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+.wpsvp-pgn-current,
+.wpsvp-pgn-btn:hover{
+    color: #fff!important;
+    background: #0073aa!important;
+}
+
+.wpsvp-notice-error{
+	display: inline-block;
+	margin-top: 5px;
+	background: #ca4a1f;
+    padding: 5px;
+    color: #fff;
+}
+
+
+/* tabs */
+.wpsvp-tab-header{
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+.wpsvp-tab-header li{
+	background-color: #f1f1f1;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 13px;
+    transition: 0.3s;
+    margin: 0;
+}
+.wpsvp-tab-header li:hover,
+.wpsvp-tab-active{
+    background-color: #ddd!important;
+}
+.wpsvp-tab-content{
+	display: none;
+    padding-left: 10px;
+}
+
+/* break point */
+#wpsvp-br-table-wrap{
+	margin: 10px 0;
+}
+.wpsvp-br-table{
+	background: #f1f1f1;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.wpsvp-br-table thead th{
+    padding: 0;
+}
+.wpsvp-br-table tbody td{
+    padding: 0;
+}
+.wpsvp-br-table input,
+.wpsvp-br-table th{
+    width: auto!important;
+}
+.wpsvp-br-table th{
+    font-weight: 600!important;
+}
+
+
+
+/* playlist select */
+
+#pl-select-wrap{
+	max-width: 500px;
+}
+#pl-select-wrap li{
+	border:1px solid #ddd;
+	cursor: pointer;
+	line-height: 30px;
+    height: 30px;
+}
+#pl-select-wrap li span{
+	margin-left: 10px;
+}
+.pl-list-selected{
+	background-color: #ddd;
+}
+
+
+/* visibility */
+.ev-unit-wrap{
+	max-width: 900px;
+	margin-bottom: 10px;
+}
+.ev-unit-list{
+	columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    margin-bottom: 20px;
+}
+.ev-unit-wrap.option-tab{
+    background: #f1f1f1!important;
+}
+.ev-unit-wrap .option-toggle{
+	background: #9E9E9E;
+    position: relative;
+}
+.ev-unit-wrap .option-toggle svg{
+	position: absolute;
+    height: 20px;
+    color: #fff;
+    right: 15px;
+    top: 10px;
+}
+
+.ev-unit-wrap .container {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.ev-unit-wrap .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.ev-unit-wrap .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.ev-unit-wrap .container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.ev-unit-wrap .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.ev-unit-wrap .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.ev-unit-wrap .container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.ev-unit-wrap .container .checkmark:after {
+    left: 6px;
+    top:2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* adverts */
+
+.wpsvp-ri{
+    display:  inline-block;
+    float:  right;
+    margin-bottom: 0;
+}
+.aprf{
+    border:1px solid rgba(255,0,0,0.5)!important;
+}
+
+.ad-info{
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+#wpsvp-media-tabs{
+    margin: 0 20px 20px 20px;
+}
+
+#preroll-source-add,
+#midroll-source-add{
+    margin-bottom: 20px;
+}
+
+
+.wpsvp-ad-source,
+.wpsvp-annotation-source{
+    background: #f1f1f1!important;
+    max-width: 1000px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.wpsvp-ad-source .option-toggle,
+.wpsvp-annotation-source .option-toggle{
+    background: #9E9E9E;
+}
+.wpsvp-ad-source .option-toggle svg,
+.wpsvp-annotation-source .option-toggle svg{
+    position: absolute;
+    height: 20px;
+    color: #fff;
+    right: 15px;
+    top: 10px;
+}
+
+.wpsvp-em{
+    color:red;
+}
+
+.wpsvp-img-preview{
+    display: block;
+    max-width: 120px;
+    height: auto;
+}
+
+
+#wpsvp-file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.wpsvp-table-api th,
+.wpsvp-table-api td{
+    vertical-align: middle;
+}
+
+#wpsvp-import-playlist-form{
+    float: right;
+    margin-left: 5px;
+}
+
+@keyframes wpsvpblink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+      opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+      opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+      opacity: .2;
+    }
+}
+
+#wpsvp-import-playlist-loader{
+    display: none;
+}
+
+#wpsvp-import-playlist-loader span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: wpsvpblink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+}
+
+#wpsvp-import-playlist-loader span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+}
+
+#wpsvp-import-playlist-loader span:nth-child(3) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .4s;
+}
+
+
+
+
+
+/*tags*/
+#wpsvp-tag-wrap,
+#wpsvp-category-wrap{
+    margin-bottom: 2px;
+    max-width: 300px;
+    overflow: hidden;
+}
+.wpsvp-tag-item,
+.wpsvp-category-item{
+    color: #fff;
+    background: #0085ba;
+    float: left;
+    font-size: 13px;
+    padding: 4px;
+    margin: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.wpsvp-category-item{
+    background: #ca4a1f;
+}
+.wpsvp-tag-item:after,
+.wpsvp-category-item:after{
+    display: inline-block;
+    content: "\00d7"; /* This will render the 'X' */
+}
+
+
+/* sample import */
+#wpsvp-sample-import{
+    display: block;
+    margin: 10px 0;
+}
+.wpsvp-demo-sc{
+    display: none;
+}
