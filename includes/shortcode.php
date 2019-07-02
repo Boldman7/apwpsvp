@@ -1083,6 +1083,11 @@ function wpsvp_get_playlist2($wpsvp_unique_player_id, $media) {
             // }
 
             /*  Added by Boldman*/
+
+            if(!empty($media["normal_play_mode"])){
+                $track .= 'data-normal-play-mode="'.$media["normal_play_mode"].'" ';
+            }
+
             if(!empty($media["random_clip_time"])){
                 $track .= 'data-random-clip-time="'.$media["random_clip_time"].'" ';
             }
@@ -1299,6 +1304,11 @@ function wpsvp_shortcode_media($media, $encrypt_media_paths, $global_ads, $globa
     //     $track .= 'data-playing-length="'.$media["playing_length"].'" ';
     // }
     /*  Added by Boldman*/
+
+    if(!empty($media["normal_play_mode"])){
+        $track .= 'data-normal-play-mode="'.$media["normal_play_mode"].'" ';
+    }
+
     if(!empty($media["random_clip_time"])){
         $track .= 'data-random-clip-time="'.$media["random_clip_time"].'" ';
     }

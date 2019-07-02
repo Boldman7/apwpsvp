@@ -2048,6 +2048,7 @@ jQuery(document).ready(function($) {
 
     /*  Added by Boldman*/
     random_clip_time_field = $('#random_clip_time_field'),
+    normal_play_mode_field = $('#normal_play_mode_field'),
 
     /*  Added by Boldman.*/
     // playing_length_field = $('#playing_length_field'),
@@ -2232,6 +2233,7 @@ jQuery(document).ready(function($) {
     	start_field.hide();
         end_field.hide();
         /*  Added by Boldman*/
+        normal_play_mode_field.hide();
         random_clip_time_field.hide();
         // playing_length_field.hide();
         upnext_field.hide();
@@ -2290,6 +2292,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2360,6 +2363,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2383,6 +2387,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2437,6 +2442,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2481,6 +2487,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2507,6 +2514,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             // playing_length_field.show();
 
@@ -2532,6 +2540,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2557,6 +2566,7 @@ jQuery(document).ready(function($) {
             start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2577,6 +2587,7 @@ jQuery(document).ready(function($) {
     		start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2599,6 +2610,7 @@ jQuery(document).ready(function($) {
     		start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2623,6 +2635,7 @@ jQuery(document).ready(function($) {
     		start_field.show();
             end_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             /*  Added by Boldman*/
             // playing_length_field.show();
@@ -2647,6 +2660,7 @@ jQuery(document).ready(function($) {
             /*  Added by Boldman*/
             // playing_length_field.show();
             /*  Added by Boldman*/
+            normal_play_mode_field.show();
             random_clip_time_field.show();
             load_more_field.show();
             width_field.show();

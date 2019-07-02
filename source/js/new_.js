@@ -11,9 +11,13 @@ var randomVal = 0;
 var partFlag = 0;
 var measureTime = 0;
 
-var randomClipMode = 0;
+var playingMode = 2;
 
 var wpsvpjq = jQuery;
+
+var testVal = 0;
+var myVar;
+
 (function(c) {
     var b = function() {};
     b.test = document.createElement("div");
@@ -1772,6 +1776,7 @@ var wpsvpjq = jQuery;
                     h.end && e.attr("data-end", h.end);
 
                     /*  added by Boldman*/
+                    h.normalPlayMode && e.attr("data-normal-play-mode", h.normalPlayMode);
                     h.randomClipTime && e.attr("data-random-clip-time", h.randomClipTime);
 
                     h.aspectRatio && e.attr("data-aspect-ratio", h.aspectRatio);
@@ -2430,125 +2435,148 @@ var wpsvpjq = jQuery;
             else {
                 a && (Mc && (R = !0), yd && (R = !0));
 
-                    // console.log(randomClipMode);
+                // console.log(testVal);
+                // testVal ++;
 
-                    var myVar1 = setInterval(function(){
+                // console.log(playingMode);
 
-                    if (randomClipMode == 1){
-                        if (m != null)
-                            m.playbackRate = 1;
-                        else if (t != null)
-                            t.playbackRate = 1;
-                    }
-                    else{
+                //     var myVar1 = setInterval(function(){
 
-                        i ++;
-                        // console.log("cccc");
+                //     if (playingMode == 1){
+                //         if (m != null)
+                //             m.playbackRate = 1;
+                //         else if (t != null)
+                //             t.playbackRate = 1;
+                //     }
+                //     else{
 
-                        // determine which mode should be played.
-                        if ((partFirstRandomTime == 0) && (partSecondRandomTime == 0)){
+                //         i ++;
+                //         // console.log("cccc");
 
-                            randomVal = Math.random() * 10;
+                //         // determine which mode should be played.
+                //         if ((partFirstRandomTime == 0) && (partSecondRandomTime == 0)){
 
-                            if (randomVal >= 3){
-                                partFlag = 1;   //  fast mode(5:1:1)
-                            } else if (randomVal < 1.5){
-                                partFlag = 2;   //  slow mode(1:5:1)
-                            } else{
-                                partFlag = 3;   //  pause mode(1:5:1)
-                            }
+                //             randomVal = Math.random() * 10;
 
-                            partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+                //             if (randomVal >= 3){
+                //                 partFlag = 1;   //  fast mode(5:1:1)
+                //             } else if (randomVal < 1.5){
+                //                 partFlag = 2;   //  slow mode(1:5:1)
+                //             } else{
+                //                 partFlag = 3;   //  pause mode(1:5:1)
+                //             }
 
-                            // console.log("randomVal -->" + randomVal);
-                            // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
-                        }
+                //             partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+
+                //             // console.log("randomVal -->" + randomVal);
+                //             // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
+                //         }
 
 
-                        /*  At this, it's played as normal speed for random time. 
-                            After this, it is played as playing mode randomly selected for random time.*/
-                        if (partFirstRandomTime > 0){
+                //         /*  At this, it's played as normal speed for random time. 
+                //             After this, it is played as playing mode randomly selected for random time.*/
+                //         if (partFirstRandomTime > 0){
 
-                            if (measureTime == 0){
-                                if (m != null)
-                                    m.playbackRate = 1;
-                                else if (t != null)
-                                    t.playbackRate = 1;
-                            }
+                //             if (measureTime == 0){
+                //                 if (m != null){
+                //                     m.playbackRate = 1;
+                //                     m.volume = 0.5;
+                //                 }
+                //                 else if (t != null)
+                //                     t.playbackRate = 1;
+                //             }
                             
-                            if (measureTime < partFirstRandomTime){
-                                measureTime ++;
-                            }else{
-                                if (partFlag != 3)
-                                    partSecondRandomTime = Math.random() * 20 + 10;
-                                else
-                                    partSecondRandomTime = Math.random() * 18 + 2;
+                //             if (measureTime < partFirstRandomTime){
+                //                 measureTime ++;
+                //                 console.log("prev");
+                //                 console.log(measureTime);
+                //             }else{
+                //                 if (partFlag != 3)
+                //                     partSecondRandomTime = Math.random() * 20 + 10;
+                //                 else
+                //                     partSecondRandomTime = Math.random() * 18 + 2;
 
-                                // console.log("1->playbackRate --> " + m.playbackRate);
-                                // console.log("pastSecondRandomTime --> " + partSecondRandomTime);
-                                partFirstRandomTime = 0;
-                                measureTime = 0;
-                            }
-                        }
+                //                 // console.log("1->playbackRate --> " + m.playbackRate);
+                //                 // console.log("pastSecondRandomTime --> " + partSecondRandomTime);
+                //                 partFirstRandomTime = 0;
+                //                 measureTime = 0;
+                //             }
+                //         }
 
-                        /*  After playing as normal speed, this is called*/
-                        if (partSecondRandomTime > 0){
+                //         /*  After playing as normal speed, this is called*/
+                //         if (partSecondRandomTime > 0){
 
-                            if (measureTime == 0){
-                                if (partFlag == 1){
-                                    if (m != null)
-                                        m.playbackRate = Math.random() * 2 + 2;
-                                    else if (t != null)
-                                        t.playbackRate = Math.random() * 2 + 2;
-                                }
-                                else if (partFlag == 2){
-                                    if (m != null)
-                                        m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
-                                    else if (t != null)
-                                        t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
-                                }
-                                else if (partFlag == 3){
-                                    if (m != null)
-                                        m.playbackRate = 0;
-                                    else if (t != null)
-                                        t.playbackRate = 1;
-                                }
+                //             if (measureTime == 0){
+                //                 if (partFlag == 1){
+                //                     if (m != null){
+                //                         m.playbackRate = Math.random() * 2 + 2;
+                //                         m.volume = 0;
+                //                     }
+                //                     else if (t != null){
+                //                         t.playbackRate = Math.random() * 2 + 2;
+                //                     }
+                //                 }
+                //                 else if (partFlag == 2){
+                //                     if (m != null){
+                //                         m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                //                         m.volume = 0;
+                //                     }
+                //                     else if (t != null)
+                //                         t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                //                 }
+                //                 else if (partFlag == 3){
+                //                     if (m != null){
+                //                         m.playbackRate = 0;
+                //                         m.volume = 0;
+                //                     }
+                //                     else if (t != null)
+                //                         t.playbackRate = 1;
+                //                 }
 
-                                // console.log("2->playbackRate --> " + m.playbackRate);
-                            }
+                //                 // console.log("2->playbackRate --> " + m.playbackRate);
+                //             }
                             
-                            if (measureTime < partSecondRandomTime){
-                                measureTime ++;
-                            }else{
-                                partSecondRandomTime = 0;
-                                measureTime = 0;
-                            }
-                        }
-                    }
-                }, 100);
+                //             if (measureTime < partSecondRandomTime){
+                //                 measureTime ++;
+                //             }else{
+                //                 partSecondRandomTime = 0;
+                //                 measureTime = 0;
+                //             }
+                //         }
+                //     }
+                // }, 500);
 
 
 
 
                 if ("audio" == f) Ag || (vc = c(document.createElement("audio")).attr("preload", Bg), t = vc[0], Ag = !0), t.src = da, vc.on("ended", function() {
                     ic()
-                    if (randomClipMode == 0)
-                        clearInterval(myVar);
+                    // if (playingMode == 0)
+                    //     clearInterval(myVar1);
+
+
                 }).on("loadedmetadata", function() {
 
                         /*  added by Boldman!!!*/
 
-                        if (k.randomClipTime != null){
+                        // console.log("end");
+
+                        if (playingMode == 0)
+                            clearInterval(myVar);
+
+                        if (k.normalPlayMode == 1){
+                            playingMode = 2;
+                        } else if (k.randomClipTime != null){
 
                             k.start = Math.random() * t.duration;
                             k.end = k.randomClipTime + k.start;
 
-                            randomClipMode = 1;
-                            // k.start = 2;
-                            // k.end = 4;
-                        }else{
-                            randomClipMode = 0;
-                        }
+                            playingMode = 1;
+
+                        } else if (k.randomClipTime == null){
+                            playingMode = 0;
+                            // console.log("playingMode -> 0");
+                        } 
 
 
                     t.playbackRate ?
@@ -2568,6 +2596,128 @@ var wpsvpjq = jQuery;
                     O = null;
                     yb && !uc && me()
                 }).on("play", function() {
+
+                        if (playingMode == 1){
+                            if (m != null)
+                                m.playbackRate = 1;
+                            else if (t != null)
+                                t.playbackRate = 1;
+                        }
+                        else if(playingMode == 0){
+
+                            console.log("before");
+
+                            myVar = setInterval(function(){
+
+                                // console.log(testVal);
+                                // testVal ++;
+
+                                i ++;
+
+                                // determine which mode should be played.
+                                if ((partFirstRandomTime == 0) && (partSecondRandomTime == 0)){
+
+                                    randomVal = Math.random() * 10;
+
+                                    if (randomVal > 4){
+                                        partFlag = 1;   //  fast mode(3:1:1)
+                                    } else if (randomVal <= 2){
+                                        partFlag = 2;   //  slow mode(1:3:1)
+                                    } else{
+                                        partFlag = 3;   //  pause mode(1:3:1)
+                                    }
+
+                                    partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+
+                                    // console.log("randomVal -->" + randomVal);
+                                    // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
+                                }
+
+
+                                /*  At this, it's played as normal speed for random time. 
+                                    After this, it is played as playing mode randomly selected for random time.*/
+                                if (partFirstRandomTime > 0){
+
+                                    if (measureTime == 0){
+                                        if (m != null){
+                                            m.playbackRate = 1;
+                                            m.volume = 0.5;
+                                        }
+                                        else if (t != null){
+                                            t.playbackRate = 1;
+                                            t.volume = 0.5;
+                                        }
+                                    }
+                                    
+                                    if (measureTime < partFirstRandomTime){
+                                        measureTime ++;
+                                        // console.log("next");
+                                        // console.log(measureTime);
+
+                                    }else{
+                                        if (partFlag == 1)
+                                            partSecondRandomTime = Math.random() * 5 + 2;
+                                        else if (partFlag == 2)
+                                            partSecondRandomTime = Math.random() * 20 + 10;
+                                        else
+                                            partSecondRandomTime = Math.random() * 18 + 2;
+
+                                        // console.log("1->playbackRate --> " + m.playbackRate);
+                                        // console.log("pastSecondRandomTime --> ");
+                                        partFirstRandomTime = 0;
+                                        measureTime = 0;
+                                    }
+                                }
+
+                                /*  After playing as normal speed, this is called*/
+                                if (partSecondRandomTime > 0){
+
+                                    if (measureTime == 0){
+                                        if (partFlag == 1){
+                                            if (m != null){
+                                                m.playbackRate = Math.random() * 2 + 2;
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = Math.random() * 2 * 2;
+                                                t.volume = 0;
+                                            }
+                                        }
+                                        else if (partFlag == 2){
+                                            if (m != null){
+                                                m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                t.volume = 0;
+                                            }
+                                        }
+                                        else if (partFlag == 3){
+                                            if (m != null){
+                                                m.playbackRate = 0;
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = 1;
+                                                t.volume = 0;
+                                            }
+                                        }
+
+                                        // console.log("2->playbackRate --> " + m.playbackRate);
+                                    }
+                                    
+                                    if (measureTime < partSecondRandomTime){
+                                        measureTime ++;
+                                    }else{
+                                        partSecondRandomTime = 0;
+                                        measureTime = 0;
+                                    }
+                                }
+
+                                }, 100);
+                        }
+
                     Gd()
                 }).on("pause",
                     function() {
@@ -2622,213 +2772,28 @@ var wpsvpjq = jQuery;
 
                     /*  added by Boldman.*/
 
-                    // console.log(randomClipMode);
+                    // console.log(playingMode);
 
-                    var myVar = setInterval(function(){
-
-                    if (randomClipMode == 1){
-                        if (m != null)
-                            m.playbackRate = 1;
-                        else if (t != null)
-                            t.playbackRate = 1;
-                    }
-                    else{
-
-                        i ++;
-                        // console.log("cccc");
-
-                        // determine which mode should be played.
-                        if ((partFirstRandomTime == 0) && (partSecondRandomTime == 0)){
-
-                            randomVal = Math.random() * 10;
-
-                            if (randomVal >= 3){
-                                partFlag = 1;   //  fast mode(5:1:1)
-                            } else if (randomVal < 1.5){
-                                partFlag = 2;   //  slow mode(1:5:1)
-                            } else{
-                                partFlag = 3;   //  pause mode(1:5:1)
-                            }
-
-                            partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
-
-                            // console.log("randomVal -->" + randomVal);
-                            // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
-                        }
+                    // console.log(testVal);
+                    // testVal ++;
 
 
-                        /*  At this, it's played as normal speed for random time. 
-                            After this, it is played as playing mode randomly selected for random time.*/
-                        if (partFirstRandomTime > 0){
-
-                            if (measureTime == 0){
-                                if (m != null)
-                                    m.playbackRate = 1;
-                                else if (t != null)
-                                    t.playbackRate = 1;
-                            }
-                            
-                            if (measureTime < partFirstRandomTime){
-                                measureTime ++;
-                            }else{
-                                if (partFlag != 3)
-                                    partSecondRandomTime = Math.random() * 20 + 10;
-                                else
-                                    partSecondRandomTime = Math.random() * 18 + 2;
-
-                                // console.log("1->playbackRate --> " + m.playbackRate);
-                                // console.log("pastSecondRandomTime --> " + partSecondRandomTime);
-                                partFirstRandomTime = 0;
-                                measureTime = 0;
-                            }
-                        }
-
-                        /*  After playing as normal speed, this is called*/
-                        if (partSecondRandomTime > 0){
-
-                            if (measureTime == 0){
-                                if (partFlag == 1){
-                                    if (m != null){
-                                        m.playbackRate = Math.random() * 2 + 2;
-                                        m.volume = 0;
-                                    }
-                                    else if (t != null)
-                                        t.playbackRate = Math.random() * 2 * 2;
-                                }
-                                else if (partFlag == 2){
-                                    if (m != null)
-                                        m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
-                                    else if (t != null)
-                                        t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
-                                }
-                                else if (partFlag == 3){
-                                    if (m != null)
-                                        m.playbackRate = 0;
-                                    else if (t != null)
-                                        t.playbackRate = 1;
-                                }
-
-                                // console.log("2->playbackRate --> " + m.playbackRate);
-                            }
-                            
-                            if (measureTime < partSecondRandomTime){
-                                measureTime ++;
-                            }else{
-                                partSecondRandomTime = 0;
-                                measureTime = 0;
-                            }
-                        }
-                    }
-
-                        // if (randomTime == 0){
-
-                        //     if (playSequence % 6 != 5)
-                        //         randomTime = Math.random() * 20 + 10;
-                        //     else
-                        //         randomTime = Math.random() * 18 + 2;
-                        
-                        //     console.log(playSequence);
-                        //     console.log(randomTime);
-                        //     console.log(partTime);
-                        // }
-
-                        // if (partTime <= randomTime){
-
-                        //     switch(playSequence % 6){
-                        //         default:
-                        //             m.playbackRate = 1;
-                        //             break;
-                        //         case 0:
-                        //             m.playbackRate = 1;
-                        //             break;
-                        //         case 1:
-                        //             m.playbackRate = Math.floor(Math.random() * 7 + 1) * 2;
-                        //             break;
-                        //         case 2:
-                        //             m.playbackRate = 1;
-                        //             break;
-                        //         case 3:
-                        //             m.playbackRate = 1 / Math.floor(Math.random() * 4 + 1) * 2;
-                        //             break;
-                        //         case 4:
-                        //             m.playbackRate = 1;
-                        //             break;
-                        //         case 5:
-                        //             m.playbackRate = 0;
-                        //             break;
-                        //     }
-
-                        //     partTime ++;
-
-                        //     // set normal speed;
-                        // } else {
-                        //     playSequence ++;
-                        //     randomTime = 0;
-                        //     partTime = 0;
-                        // }
-
-
-
-
-                        // Every 2 seconds
-                        // if (i % 2 == 0){
-
-                        //     var randomVal = Math.random() * 10;
-
-                        //     if ( randomVal > 3){
-                        //         if (m != null)
-                        //             m.playbackRate = Math.floor(Math.random() * 7 + 1) * 2;
-                        //         else if (t != null)
-                        //             t.playbackRate = Math.floor(Math.random() * 7 + 1) * 2;
-
-                        //     } else if ( randomVal > 1.5 && randomVal < 3){
-                        //         if (m != null)
-                        //             m.playbackRate = 1 / Math.floor(Math.random() * 3 + 1) * 2;
-                        //         else if (t != null)
-                        //             t.playbackRate = 1 / Math.floor(Math.random() * 3 + 1) * 2;
-                        //     } else if ( randomVal > 0 && randomVal < 1.5){
-                        //         if (m != null)
-                        //             m.playbackRate = 0;
-                        //         else if (t != null)
-                        //             t.playbackRate = 0;           
-                        //     }
-
-                        // }
-
-                        // if ((i % 10) >= 0 && (i % 10) < 4){
-                        //     if (m != null)
-                        //         m.playbackRate = 1;
-                        //     else if (t != null)
-                        //         t.playbackRate = 1;
-                        // }else if ((i % 10) >= 4 && (i % 10) < 6){
-                        //     if (m != null)
-                        //         m.playbackRate = Math.floor((Math.random() * 10) + 2);
-                        //     else if (t != null)
-                        //         t.playbackRate = Math.floor((Math.random() * 10) + 2);
-                        // }else if ((i % 10) >= 6 && (i % 10) < 8){
-                        //     if (m != null)
-                        //         m.playbackRate = (Math.floor(Math.random() * 10)) / 10;
-                        //     else if (t != null)
-                        //         t.playbackRate = (Math.floor(Math.random() * 10)) / 10;
-                        // }else if ((i % 10) >= 8){
-                        //     if (m != null)
-                        //         m.playbackRate = 0;
-                        //     else if (t != null)
-                        //         t.playbackRate = 0;
-                        // }
-
-                    }, 100);
 
                     za.on("ended", function() {
                         ic()
 
-                        if (randomClipMode == 0)
-                            clearInterval(myVar);
+                        // console.log("next end and playingMode");
+                        // console.log(playingMode);
+
+                        // // if (playingMode == 0){
+                        // //     clearInterval(myVar);
+                        // //     console.log("Clear Interval at end");
+                        // // }
+
 
                     }).on("loadedmetadata", function() {
                         WPSVPAspectRatio.resizeMedia("video", Va, I, za);
                         za.addClass("wpsvp-visible");
-
 
                         //k.playbackRate ? m.playbackRate = Number(k.playbackRate) : oa(0.5);
 
@@ -2839,17 +2804,24 @@ var wpsvpjq = jQuery;
 
                         /*  added by Boldman!!!*/
 
-                        if (k.randomClipTime != null){
+                        if (playingMode == 0){
+                            clearInterval(myVar);
+                            // console.log("Clear Interval at load");
+                        }
+
+                        if (k.normalPlayMode == 1){
+                            playingMode = 2;
+                        } else if (k.randomClipTime != null){
 
                             k.start = Math.random() * m.duration;
                             k.end = k.randomClipTime + k.start;
 
-                            randomClipMode = 1;
-                            // k.start = 2;
-                            // k.end = 4;
-                        }else{
-                            randomClipMode = 0;
-                        }
+                            playingMode = 1;
+
+                        } else if (k.randomClipTime == null){
+                            playingMode = 0;
+                            // console.log("playingMode -> 0");
+                        } 
 
                         // k.start = 3;
                         // k.end  = 5;
@@ -2878,6 +2850,137 @@ var wpsvpjq = jQuery;
                     //console.log("aaa");
                         gb.hide()
                     }).on("play", function() {
+
+                        // console.log("play");
+
+                        if (playingMode == 1){
+                            if (m != null)
+                                m.playbackRate = 1;
+                            else if (t != null)
+                                t.playbackRate = 1;
+                        }
+                        else if (playingMode == 0){
+
+                            console.log("after");
+
+                            myVar = setInterval(function(){
+
+                                // console.log(testVal);
+                                // testVal ++;
+
+                                i ++;
+
+                                // determine which mode should be played.
+                                if ((partFirstRandomTime == 0) && (partSecondRandomTime == 0)){
+
+                                    randomVal = Math.random() * 10;
+
+                                    if (randomVal > 4){
+                                        partFlag = 1;   //  fast mode3:1:1)
+                                    } else if (randomVal <= 2){
+                                        partFlag = 2;   //  slow mode(1:3:1)
+                                    } else{
+                                        partFlag = 3;   //  pause mode(1:3:1)
+                                    }
+
+                                    partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+
+                                    // console.log("randomVal -->" + randomVal);
+                                    // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
+                                }
+
+
+                                /*  At this, it's played as normal speed for random time. 
+                                    After this, it is played as playing mode randomly selected for random time.*/
+                                if (partFirstRandomTime > 0){
+
+                                    if (measureTime == 0){
+                                        if (m != null){
+                                            m.playbackRate = 1;
+                                            m.volume = 0.5;
+                                        }
+                                        else if (t != null){
+                                            t.playbackRate = 1;
+                                            t.volume = 0.5;
+                                        }
+                                    }
+                                    
+                                    if (measureTime < partFirstRandomTime){
+                                        measureTime ++;
+                                        // console.log("next");
+                                        // console.log(measureTime);
+
+                                    // console.log(m.currentTime);
+
+                                    }else{
+
+                                        if (partFlag == 1)
+                                            partSecondRandomTime = Math.random() * 5 + 2;
+                                        else if (partFlag == 2)
+                                            partSecondRandomTime = Math.random() * 20 + 10;
+                                        else
+                                            partSecondRandomTime = Math.random() * 18 + 2;
+
+                                        // console.log("1->playbackRate --> " + m.playbackRate);
+                                        // console.log("pastSecondRandomTime --> " + partSecondRandomTime);
+                                        partFirstRandomTime = 0;
+                                        measureTime = 0;
+                                    }
+                                }
+
+                                /*  After playing as normal speed, this is called*/
+                                if (partSecondRandomTime > 0){
+
+                                    if (measureTime == 0){
+                                        if (partFlag == 1){
+                                            if (m != null){
+                                                m.playbackRate = Math.random() * 2 + 2;
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = Math.random() * 2 * 2;
+                                                t.volume = 0;
+                                            }
+                                        }
+                                        else if (partFlag == 2){
+                                            if (m != null){
+
+                                                m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                t.volume = 0;
+                                            }
+                                        }
+                                        else if (partFlag == 3){
+                                            if (m != null){
+                                                m.playbackRate = 0;
+                                                m.volume = 0;
+                                            }
+                                            else if (t != null){
+                                                t.playbackRate = 1;
+                                                t.volume = 0;
+                                            }
+                                        }
+
+                                        // console.log("2->playbackRate --> " + m.playbackRate);
+                                    }
+                                    
+                                    if (measureTime < partSecondRandomTime){
+                                        measureTime ++;
+                                    }else{
+
+
+
+                                        partSecondRandomTime = 0;
+                                        measureTime = 0;
+                                    }
+                                }
+
+                                }, 100);
+                        }
+
 
                         Gd()
                     }).on("pause", function() {
@@ -3813,6 +3916,7 @@ var wpsvpjq = jQuery;
                 void 0 == a.attr("data-end") || WPSVPUtils.isEmpty(a.attr("data-end")) || (d.end = Number(a.attr("data-end")));
 
                 /*  added by Boldman */
+                void 0 != a.attr("data-normal-play-mode") && (d.normalPlayMode = Number(a.attr("data-normal-play-mode")));
                 void 0 != a.attr("data-random-clip-time") && !WPSVPUtils.isEmpty(a.attr("data-random-clip-time")) && WPSVPUtils.isNumber(a.attr("data-random-clip-time")) && (d.randomClipTime = Number(a.attr("data-random-clip-time")));
                 
                 //void 0 == a.attr("data-random-clip-time") || WPSVPUtils.isEmpty(a.attr("data-random-clip-time")) || (d.randomClipTime = Number(a.attr("data-random-clip-time")));

@@ -528,9 +528,9 @@ $vimeo_sort_dir_arr = array(
                     <tr valign="top" id="normal_play_mode_field">
                         <th>Normal Play mode</th>
                         <td>
-                            <select name="normalPlayMode">
-                                <option value="1" <?php if(isset($options['normal_play_mode']) && $options['normal_play_mode'] == "1") echo 'selected' ?>>yes</option>
-                                <option value="0" <?php if(isset($options['normal_play_mode']) && $options['normal_play_mode'] == "0") echo 'selected' ?>>no</option>
+                            <select name="normal_play_mode">
+                                <option value="0" <?php if(isset($data['normal_play_mode']) && $data['normal_play_mode'] == "0") echo 'selected' ?>>no</option>
+                                <option value="1" <?php if(isset($data['normal_play_mode']) && $data['normal_play_mode'] == "1") echo 'selected' ?>>yes</option>
                             </select>
                         </td>
                     </tr>

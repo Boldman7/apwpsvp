@@ -734,7 +734,8 @@ Author URI: https://www.vizyp.com/
 					      `poster_frame_time` decimal(2,1) DEFAULT NULL,
 					      `start` smallint(11) unsigned DEFAULT NULL,
 					      `end` smallint(11) unsigned DEFAULT NULL,
-					      `random_clip_time` decimal(4,2) DEFAULT NULL,
+					      `normal_play_mode` tinyint(1) unsigned DEFAULT NULL,
+					      `random_clip_time` decimal(10,2) DEFAULT NULL,
 					      `playback_rate` decimal(2,1) DEFAULT NULL,
 					      `width` smallint(11) unsigned DEFAULT NULL,
 					      `height` smallint(11) unsigned DEFAULT NULL,
@@ -767,7 +768,7 @@ Author URI: https://www.vizyp.com/
 					              TERMINATED BY '|'
 					              ESCAPED BY ''
 					              LINES TERMINATED BY '\n'
-					              (id, type, @vtitle, @vdescription, @vlimit, @vshare, @vdownload, @vthumb, @vposter, @vposter_frame_time, @vstart, @vend, @random_clip_time, @vplayback_rate, @vwidth, @vheight, @vnoapi, @vuser_id, @vload_more, @vis360, @vpreview_seek, @vupnext, @vupnext_time, @vchapters, @vdisable_adverts, @vdisable_annotations, @vcustom_content, @vend_link, @vend_target, @vsort_type, @vsort_dir, @vpwd, @valt_text, @vhover_preview, order_id, playlist_id)
+					              (id, type, @vtitle, @vdescription, @vlimit, @vshare, @vdownload, @vthumb, @vposter, @vposter_frame_time, @vstart, @vend, @normal_play_mode, @random_clip_time, @vplayback_rate, @vwidth, @vheight, @vnoapi, @vuser_id, @vload_more, @vis360, @vpreview_seek, @vupnext, @vupnext_time, @vchapters, @vdisable_adverts, @vdisable_annotations, @vcustom_content, @vend_link, @vend_target, @vsort_type, @vsort_dir, @vpwd, @valt_text, @vhover_preview, order_id, playlist_id)
 					              SET  title = nullif(@vtitle,''),
 					                   description = nullif(@vdescription,''),
 					                   `limit` = nullif(@vlimit,''),
@@ -778,6 +779,7 @@ Author URI: https://www.vizyp.com/
 					                   poster_frame_time = nullif(@vposter_frame_time,''),
 					                   start = nullif(@vstart,''),
 					                   end = nullif(@vend,''),
+					                   normal_play_mode = nullif(@vnormal_play_mode,''),
 					                   random_clip_time = nullif(@vrandom_clip_time,''),
 					                   playback_rate = nullif(@vplayback_rate,''),
 					                   width = nullif(@vwidth,''),
@@ -1028,8 +1030,8 @@ Author URI: https://www.vizyp.com/
 
 					        //var_dump($id);
 
-					        $sql = "INSERT INTO $media_table (id, type, title, description, `limit`, share, download, thumb, poster, poster_frame_time, start, end, random_clip_time, playback_rate, width, height, noapi, user_id, order_id, playlist_id, load_more, is360, preview_seek, upnext, upnext_time, chapters, disable_adverts, disable_annotations, custom_content, end_link, end_target, sort_type, sort_dir, pwd, alt_text, hover_preview)
-					                  SELECT NULL, type, title, description, `limit`, share, download, thumb, poster, poster_frame_time, start, end, random_clip_time, playback_rate, width, height, noapi, user_id, order_id, $last_playlist_id, load_more, is360, preview_seek, upnext, upnext_time, chapters, disable_adverts, disable_annotations, custom_content, end_link, end_target, sort_type, sort_dir, pwd, alt_text, hover_preview
+					        $sql = "INSERT INTO $media_table (id, type, title, description, `limit`, share, download, thumb, poster, poster_frame_time, start, end, normal_play_mode, random_clip_time, playback_rate, width, height, noapi, user_id, order_id, playlist_id, load_more, is360, preview_seek, upnext, upnext_time, chapters, disable_adverts, disable_annotations, custom_content, end_link, end_target, sort_type, sort_dir, pwd, alt_text, hover_preview)
+					                  SELECT NULL, type, title, description, `limit`, share, download, thumb, poster, poster_frame_time, start, end, normal_play_mode, random_clip_time, playback_rate, width, height, noapi, user_id, order_id, $last_playlist_id, load_more, is360, preview_seek, upnext, upnext_time, chapters, disable_adverts, disable_annotations, custom_content, end_link, end_target, sort_type, sort_dir, pwd, alt_text, hover_preview
 					                  FROM {$media_temp} WHERE id='$id'";
 
 					        $wpdb->query($sql); 
@@ -1232,7 +1234,8 @@ Author URI: https://www.vizyp.com/
 			    `poster_frame_time` decimal(2,1) DEFAULT NULL,
 			    `start` smallint(11) unsigned DEFAULT NULL,
 			    `end` smallint(11) unsigned DEFAULT NULL,
-			    `random_clip_time` decimal(4,2) DEFAULT NULL,
+			    `normal_play_mode` tinyint(1) unsigned DEFAULT NULL,
+			    `random_clip_time` decimal(10,2) DEFAULT NULL,
 			    `playback_rate` decimal(2,1) DEFAULT NULL,
 			    `width` smallint(11) unsigned DEFAULT NULL,
 			    `height` smallint(11) unsigned DEFAULT NULL,
