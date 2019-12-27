@@ -1,5 +1,9 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+global $wpdb;
 //load players
 $players = $wpdb->get_results("SELECT id, title FROM {$player_table} ORDER BY title ASC", ARRAY_A);
 
@@ -47,11 +51,12 @@ $playlists = $wpdb->get_results("SELECT id, title FROM {$playlist_table} ORDER B
 							</select>
 			            </td>
 					</tr>
-
 					<tr valign="top">
 						<th style="width:15%">Shortcode</th>
+						
 						<td>
-				            <textarea id="shortcode_generator" rows="3" style="width: 500px;"></textarea>
+						
+				           <textarea id="shortcode_generator" rows="3" style="width: 500px;"></textarea>
 			            </td>
 					</tr>
 

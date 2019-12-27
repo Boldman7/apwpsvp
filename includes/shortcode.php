@@ -12,6 +12,8 @@ function wpsvp_add_player($atts){
 
     //general settings
     global $wpdb;
+    $breakpoint=get_option('saves_the_pagination');
+    
     $wpdb->show_errors(); 
     $settings_table = $wpdb->prefix . "wpsvp_settings";
     $settings = $wpdb->get_row("SELECT * FROM {$settings_table} WHERE id = '0'", ARRAY_A);
@@ -94,10 +96,10 @@ function wpsvp_add_player($atts){
 
     $html = wpsvp_get_html_markup($wrapper_id, $playlist_id, $options);
     $output = $js . $html . $playlist ;
-
+   // $elseoutput='<div style="display:none">'.$output.'</div>';
     $wpsvp_unique_player_id++;
 
-    return $output;
+            return $output;   
 
 }
 
@@ -644,7 +646,7 @@ function wpsvp_get_playlist($wpsvp_unique_player_id, $playlist_id, $atts, $optio
             //tracks
 
             foreach($medias as $media) {
-                $markup .= wpsvp_shortcode_media($media, $encrypt_media_paths, $global_ads, $global_annotations);
+                $markup .= wpsvp_shortcode_media($atts,$media, $encrypt_media_paths, $global_ads, $global_annotations);
             }
 
             $markup .= PHP_EOL;
@@ -1169,9 +1171,13 @@ function wpsvp_get_playlist2($wpsvp_unique_player_id, $media) {
         
 }
 
-function wpsvp_shortcode_media($media, $encrypt_media_paths, $global_ads, $global_annotations){
-
-    global $wpdb;
+function wpsvp_shortcode_media($atts,$media, $encrypt_media_paths, $global_ads, $global_annotations){
+	
+	//echo "<pre>"; print_r($media);
+	//echo "<pre>"; print_r($atts);
+	//die("1233");
+	
+	global $wpdb;
     $path_table = $wpdb->prefix . "wpsvp_path";
     $subtitle_table = $wpdb->prefix . "wpsvp_subtitle";
     $ad_table = $wpdb->prefix . "wpsvp_ad";
@@ -1308,9 +1314,9 @@ function wpsvp_shortcode_media($media, $encrypt_media_paths, $global_ads, $globa
     if(!empty($media["normal_play_mode"])){
         $track .= 'data-normal-play-mode="'.$media["normal_play_mode"].'" ';
     }
-
-    if(!empty($media["random_clip_time"])){
-        $track .= 'data-random-clip-time="'.$media["random_clip_time"].'" ';
+	//$media["random_clip_time"]
+    if(!empty($atts["clip_time"])){
+        $track .= 'data-random-clip-time="'.$atts["clip_time"].'" ';
     }
     if(!empty($media["width"])){
         $track .= 'data-width="'.$media["width"].'" ';

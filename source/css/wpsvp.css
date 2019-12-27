@@ -30,6 +30,7 @@ a{
 	z-index: 1;
 	opacity: 0;
 	line-height: 1;
+	margin-bottom: 20px;
 }
 .wpsvp-ht,
 .wpsvp-hb{
@@ -50,7 +51,6 @@ a{
 	line-height: 1;
 }
 
-.wpsvp-skin-dark-flat .wpsvp-player-holder,
 .wpsvp-skin-dark-flat:not(.wpsvp-wall):not(.wpsvp-outer) .wpsvp-playlist-holder{
 	background: rgba(17,17,17,1);
 }
@@ -3423,4 +3423,17 @@ a{
          -o-transform:skew(8deg) rotate(3deg);
             transform:skew(8deg) rotate(3deg);
 }
+
+.wpsvp-video-holder {
+    border-radius: 35px !important;
+	background: rgba(0, 0, 0, 0) !important;
+}
+.wpsvp-player-controls-bottom{
+	border-bottom-right-radius: 35px !important;
+    border-bottom-left-radius: 35px !important;
+}
+.wpsvp-skin-dark-flat .wpsvp-player-holder{
+	background: rgba(0, 0, 0, 0) !important;
+}
+
 

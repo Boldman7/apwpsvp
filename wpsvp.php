@@ -16,6 +16,7 @@ Author URI: https://www.vizyp.com/
 	if(!defined('WPSVP_BSF_MATCH'))define('WPSVP_BSF_MATCH', 'ebsfm:');//encrypt self hosted media and subtitles (not folders)
 
 	include(dirname(__FILE__) . '/includes/utils.php');
+	//include(dirname(__FILE__) . '/admin/editor/editor.php');
 
 	if(is_admin()){
 
@@ -43,13 +44,15 @@ Author URI: https://www.vizyp.com/
 
 		include(dirname(__FILE__) . '/includes/html_markup.php');
 		include(dirname(__FILE__) . '/includes/shortcode.php');
-
+		
 		add_shortcode('apwpsvp', 'wpsvp_add_player');
 		add_action('wp_enqueue_scripts', 'wpsvp_enqueue_scripts');
 
 		add_filter('wp_video_shortcode_override', 'wpsvp_video_shortcode_override', 10, 2 );
 
 	}
+
+add_action('wp_enqueue_scripts', 'enqueue_required_style');
 
 	function wpsvp_video_shortcode_override( $html, $attr ) {
 
@@ -72,6 +75,7 @@ Author URI: https://www.vizyp.com/
 		$submenu2 = add_submenu_page("wpsvp_player_manager", "Wiz PS Video Player Player manager", "Player manager", WPSVP_CAPABILITY, 'wpsvp_player_manager', "wpsvp_player_manager_page");	
 		$submenu3 = add_submenu_page("wpsvp_player_manager", "Wiz PS Video Player Playlist manager", "Playlist manager", WPSVP_CAPABILITY, 'wpsvp_playlist_manager', 'wpsvp_playlist_manager_page');
 		$submenu4 = add_submenu_page("wpsvp_player_manager", "Wiz PS Video Player Shortcodes", "Shortcodes", WPSVP_CAPABILITY, 'wpsvp_shortcodes', 'wpsvp_shortcodes_page');
+		$submenu6 = add_submenu_page("wpsvp_player_manager", "Wiz PS Video Player Pagination", "Pagination", WPSVP_CAPABILITY, 'wpsvp_paginations', 'wpsvp_pagination_page');
 		//$submenu5 = add_submenu_page("wpsvp_player_manager", "Wiz PS Video Player Demo", "Demos", WPSVP_CAPABILITY, 'wpsvp_demo', 'wpsvp_demo_page');
 
 		add_action( 'load-' . $menu, 'wpsvp_admin_enqueue_scripts' );
@@ -79,9 +83,20 @@ Author URI: https://www.vizyp.com/
 		add_action( 'load-' . $submenu2, 'wpsvp_admin_enqueue_scripts' );
 		add_action( 'load-' . $submenu3, 'wpsvp_admin_enqueue_scripts' );
 		add_action( 'load-' . $submenu4, 'wpsvp_admin_enqueue_scripts' );
+		add_action( 'load-' . $submenu6, 'wpsvp_admin_enqueue_scripts' );
 		//add_action( 'load-' . $submenu5, 'wpsvp_admin_enqueue_scripts' );
 
 	}
+
+
+function enqueue_required_style(){
+
+ wp_register_style( 'verification_style', plugins_url('/css/verification-style.css', __FILE__), false, '1.0.0', 'all'); 
+
+ wp_enqueue_style( 'verification_style' ); 
+
+}
+
 
 	function wpsvp_player_manager_page(){
 
@@ -173,8 +188,21 @@ Author URI: https://www.vizyp.com/
 		$wpdb->show_errors(); 
 		$player_table = $wpdb->prefix . "wpsvp_players";
 		$playlist_table = $wpdb->prefix . "wpsvp_playlists";
+		$media_table = $wpdb->prefix . "wpsvp_media";
 
 		include("includes/shortcode_manager.php");
+		
+	}
+
+	function wpsvp_pagination_page()
+	{
+		global $wpdb;
+		$wpdb->show_errors(); 
+		$player_table = $wpdb->prefix . "wpsvp_players";
+		$playlist_table = $wpdb->prefix . "wpsvp_playlists";
+		$media_table = $wpdb->prefix . "wpsvp_media";
+
+		include("includes/pagination_manager.php");
 	}
 
 	function wpsvp_demo_page(){
@@ -735,7 +763,8 @@ Author URI: https://www.vizyp.com/
 					      `start` smallint(11) unsigned DEFAULT NULL,
 					      `end` smallint(11) unsigned DEFAULT NULL,
 					      `normal_play_mode` tinyint(1) unsigned DEFAULT NULL,
-					      `random_clip_time` decimal(10,2) DEFAULT NULL,
+					      `random_clip_time` varchar(350) DEFAULT NULL,
+						  `all_clip` varchar(350) DEFAULT NULL,
 					      `playback_rate` decimal(2,1) DEFAULT NULL,
 					      `width` smallint(11) unsigned DEFAULT NULL,
 					      `height` smallint(11) unsigned DEFAULT NULL,
@@ -1235,7 +1264,8 @@ Author URI: https://www.vizyp.com/
 			    `start` smallint(11) unsigned DEFAULT NULL,
 			    `end` smallint(11) unsigned DEFAULT NULL,
 			    `normal_play_mode` tinyint(1) unsigned DEFAULT NULL,
-			    `random_clip_time` decimal(10,2) DEFAULT NULL,
+			    `random_clip_time` varchar(350) DEFAULT NULL,
+				`all_clip` varchar(350) DEFAULT NULL,
 			    `playback_rate` decimal(2,1) DEFAULT NULL,
 			    `width` smallint(11) unsigned DEFAULT NULL,
 			    `height` smallint(11) unsigned DEFAULT NULL,

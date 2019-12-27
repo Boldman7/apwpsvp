@@ -1,4 +1,38 @@
 
+/********************************** These are variables for setting time ***************************************/
+
+
+/* Normal playing time : 0.5s ~ 1.5s */
+var normalTimeStart = 5;
+var normalTimeRandomRange = 10;
+
+/* Fast playing time : 0.5s ~ 1.5s */
+var fastTimeStart = 5;
+var fastTimeRandomRange = 5;
+
+/* Slow playing time : 0.5s ~ 1.5s */
+var slowTimeStart = 5;
+var slowTimeRandomRange = 5;
+
+/* Pause time : 0.5s ~ 1.5s */
+var pauseTimeStart = 5;
+var pauseTimeRandomRange = 5;
+
+/* Fast Speed : 2x */
+var fastSpeedStart = 2;
+var fastSpeedRandomRange = 0;
+
+/* Slow Speed : 1/2 */
+var slowSpeedStart = 2;
+var slowSpeedRandomRange = 0;
+
+/* Fast : Slow : Pause   ->  3 : 1 : 1 */
+var fastRate = 3;
+var slowRate = 1;
+var pauseRate = 1;
+
+/***************************************************************************************************************/
+
 /*  added by Boldman.*/
 var i = 0;
 var partTime = 0;
@@ -2619,15 +2653,16 @@ var myVar;
 
                                     randomVal = Math.random() * 10;
 
-                                    if (randomVal > 4){
+                                    if (randomVal > ( 10 - (10 * fastRate / (fastRate + slowRate + pauseRate)))){
                                         partFlag = 1;   //  fast mode(3:1:1)
-                                    } else if (randomVal <= 2){
+                                    } else if (randomVal <= ( 10 * slowRate / (fastRate + slowRate + pauseRate))){
                                         partFlag = 2;   //  slow mode(1:3:1)
                                     } else{
                                         partFlag = 3;   //  pause mode(1:3:1)
                                     }
+                            
 
-                                    partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+                                    partFirstRandomTime = Math.random() * normalTimeRandomRange + normalTimeStart;  // XXXXXXXXXXXXXXXXXXXXXXXX (Normal Speed Time)
 
                                     // console.log("randomVal -->" + randomVal);
                                     // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
@@ -2656,11 +2691,11 @@ var myVar;
 
                                     }else{
                                         if (partFlag == 1)
-                                            partSecondRandomTime = Math.random() * 5 + 2;
+                                            partSecondRandomTime = Math.random() * fastTimeRandomRange + fastTimeStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed Time)
                                         else if (partFlag == 2)
-                                            partSecondRandomTime = Math.random() * 20 + 10;
+                                            partSecondRandomTime = Math.random() * slowTimeRandomRange + slowTimeStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed Time)
                                         else
-                                            partSecondRandomTime = Math.random() * 18 + 2;
+                                            partSecondRandomTime = Math.random() * pauseTimeRandomRange + pauseTimeStart;   // XXXXXXXXXXXXXXXXXXXXXXXX (Pause Time)
 
                                         // console.log("1->playbackRate --> " + m.playbackRate);
                                         // console.log("pastSecondRandomTime --> ");
@@ -2675,21 +2710,21 @@ var myVar;
                                     if (measureTime == 0){
                                         if (partFlag == 1){
                                             if (m != null){
-                                                m.playbackRate = Math.random() * 2 + 2;
+                                                m.playbackRate = Math.random() * fastSpeedRandomRange + fastSpeedStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed)
                                                 m.volume = 0;
                                             }
                                             else if (t != null){
-                                                t.playbackRate = Math.random() * 2 * 2;
+                                                t.playbackRate = Math.random() * fastSpeedRandomRange + fastSpeedStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed)
                                                 t.volume = 0;
                                             }
                                         }
                                         else if (partFlag == 2){
                                             if (m != null){
-                                                m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                m.playbackRate = 1 / (Math.floor(Math.random() * slowSpeedRandomRange + 1) * slowSpeedStart);   // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed)
                                                 m.volume = 0;
                                             }
                                             else if (t != null){
-                                                t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                t.playbackRate = 1 / (Math.floor(Math.random() * slowSpeedRandomRange + 1) * slowSpeedStart);   // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed)
                                                 t.volume = 0;
                                             }
                                         }
@@ -2875,15 +2910,16 @@ var myVar;
 
                                     randomVal = Math.random() * 10;
 
-                                    if (randomVal > 4){
-                                        partFlag = 1;   //  fast mode3:1:1)
-                                    } else if (randomVal <= 2){
+                                    if (randomVal > ( 10 - (10 * fastRate / (fastRate + slowRate + pauseRate)))){
+                                        partFlag = 1;   //  fast mode(3:1:1)
+                                    } else if (randomVal <= ( 10 * slowRate / (fastRate + slowRate + pauseRate))){
                                         partFlag = 2;   //  slow mode(1:3:1)
                                     } else{
                                         partFlag = 3;   //  pause mode(1:3:1)
                                     }
+                            
 
-                                    partFirstRandomTime = Math.random() * 20 + 10;  //  normal playing time
+                                    partFirstRandomTime = Math.random() * normalTimeRandomRange + normalTimeStart;  // XXXXXXXXXXXXXXXXXXXXXXXX (Normal Speed Time)
 
                                     // console.log("randomVal -->" + randomVal);
                                     // console.log("pastFirstRandomTime --> " + partFirstRandomTime);
@@ -2910,19 +2946,16 @@ var myVar;
                                         // console.log("next");
                                         // console.log(measureTime);
 
-                                    // console.log(m.currentTime);
-
                                     }else{
-
                                         if (partFlag == 1)
-                                            partSecondRandomTime = Math.random() * 5 + 2;
+                                            partSecondRandomTime = Math.random() * fastTimeRandomRange + fastTimeStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed Time)
                                         else if (partFlag == 2)
-                                            partSecondRandomTime = Math.random() * 20 + 10;
+                                            partSecondRandomTime = Math.random() * slowTimeRandomRange + slowTimeStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed Time)
                                         else
-                                            partSecondRandomTime = Math.random() * 18 + 2;
+                                            partSecondRandomTime = Math.random() * pauseTimeRandomRange + pauseTimeStart;   // XXXXXXXXXXXXXXXXXXXXXXXX (Pause Time)
 
                                         // console.log("1->playbackRate --> " + m.playbackRate);
-                                        // console.log("pastSecondRandomTime --> " + partSecondRandomTime);
+                                        // console.log("pastSecondRandomTime --> ");
                                         partFirstRandomTime = 0;
                                         measureTime = 0;
                                     }
@@ -2934,22 +2967,21 @@ var myVar;
                                     if (measureTime == 0){
                                         if (partFlag == 1){
                                             if (m != null){
-                                                m.playbackRate = Math.random() * 2 + 2;
+                                                m.playbackRate = Math.random() * fastSpeedRandomRange + fastSpeedStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed)
                                                 m.volume = 0;
                                             }
                                             else if (t != null){
-                                                t.playbackRate = Math.random() * 2 * 2;
+                                                t.playbackRate = Math.random() * fastSpeedRandomRange + fastSpeedStart; // XXXXXXXXXXXXXXXXXXXXXXXX (Fast Speed)
                                                 t.volume = 0;
                                             }
                                         }
                                         else if (partFlag == 2){
                                             if (m != null){
-
-                                                m.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                m.playbackRate = 1 / (Math.floor(Math.random() * slowSpeedRandomRange + 1) * slowSpeedStart);   // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed)
                                                 m.volume = 0;
                                             }
                                             else if (t != null){
-                                                t.playbackRate = 1 / (Math.floor(Math.random() * 4 + 1) * 2);
+                                                t.playbackRate = 1 / (Math.floor(Math.random() * slowSpeedRandomRange + 1) * slowSpeedStart);   // XXXXXXXXXXXXXXXXXXXXXXXX (Slow Speed)
                                                 t.volume = 0;
                                             }
                                         }
@@ -2970,9 +3002,6 @@ var myVar;
                                     if (measureTime < partSecondRandomTime){
                                         measureTime ++;
                                     }else{
-
-
-
                                         partSecondRandomTime = 0;
                                         measureTime = 0;
                                     }

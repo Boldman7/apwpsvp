@@ -5,7 +5,7 @@ if(isset($_GET['playlist_id'])){
 }
 
 if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
-
+		//echo "<pre>"; print_r(serialize($_POST['random_clip_time'])); die("1233455");
 	if(check_admin_referer("wpsvp_add_media_action", "wpsvp_add_media_nonce_field")){
 
 		$type = $_POST['type'];
@@ -27,7 +27,10 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 	    // Added by Boldman.
 	    // $playing_length = !wpsvp_nullOrEmpty($_POST['playing_length']) ? $_POST['playing_length'] : NULL;
 		/*	Added by Boldman*/
-	    $random_clip_time = !wpsvp_nullOrEmpty($_POST['random_clip_time']) ? $_POST['random_clip_time'] : NULL;
+	    //$random_clip_time = !wpsvp_nullOrEmpty($_POST['random_clip_time']) ? $_POST['random_clip_time'] : NULL;
+		$random_clip_time = !wpsvp_nullOrEmpty($_POST['random_clip_time']) ? serialize($_POST['random_clip_time']) : NULL;
+		$all_clip = !wpsvp_nullOrEmpty($_POST['all_clip']) ? 1 : 0;
+		
 	    $normal_play_mode = !wpsvp_nullOrEmpty($_POST['normal_play_mode']) ? $_POST['normal_play_mode'] : NULL;
 
 	    $playback_rate = !wpsvp_nullOrEmpty($_POST['playback_rate']) ? $_POST['playback_rate'] : NULL;
@@ -61,7 +64,7 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 
 
 	    if(isset($_POST['add_media'])){//add new media
-
+			
 			//media order
 	        $stmt = $wpdb->get_row($wpdb->prepare("SELECT IFNULL(MAX(order_id)+1,0) AS order_id FROM {$media_table} WHERE playlist_id = %d", $playlist_id), ARRAY_A);
 	        $order_id = $stmt['order_id'];
@@ -87,6 +90,7 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 					/*	Added by Boldman*/
 					'normal_play_mode' => $normal_play_mode,
 					'random_clip_time' => $random_clip_time,
+					'all_clip' => $all_clip,
 					'playback_rate' => $playback_rate,
 					'limit' => $limit,
 					'user_id' => $user_id,
@@ -108,11 +112,11 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 					'order_id' => $order_id
 				), 
 				array( 
-					'%s','%s','%s','%s','%s','%s','%f','%s','%s','%d','%d','%d','%d','%d','%f','%f','%d','%s','%s','%s','%s','%d','%d','%d','%d','%d','%s','%s','%s','%s','%s','%s','%d','%d'
+					'%s','%s','%s','%s','%s','%s','%f','%s','%s','%d','%d','%d','%d','%d','%s','%s','%f','%d','%s','%s','%s','%s','%d','%d','%d','%d','%d','%s','%s','%s','%s','%s','%s','%d','%d'
 				) 
 		    );
-
-		    if($stmt !== false){
+			
+			if($stmt !== false){
 
 		    	$insert_id = $wpdb->insert_id;
 
@@ -426,6 +430,7 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 					/*	Added by Boldman*/
 					'normal_play_mode' => $normal_play_mode,
 					'random_clip_time' => $random_clip_time,
+					'all_clip' => $all_clip,
 					'playback_rate' => $playback_rate,
 					'user_id' => $user_id,
 					'preview_seek' => $preview_seek,
@@ -446,7 +451,7 @@ if(isset($_POST['add_media']) || isset($_POST['edit_media'])){
 				), 
 				array('id' => $media_id, 'playlist_id' => $playlist_id),//playlist_id not really necessary since 'id' in media_table is primary
 				array( 
-					'%s','%s','%s','%s','%s','%s','%f','%s','%s','%d','%d','%d','%d','%d','%f','%f','%s','%s','%s','%s','%d','%d','%d','%d','%d','%d','%s','%s','%s','%s','%s','%s'
+					'%s','%s','%s','%s','%s','%s','%f','%s','%s','%d','%d','%d','%d','%d','%s','%s','%f','%s','%s','%s','%s','%d','%d','%d','%d','%d','%d','%s','%s','%s','%s','%s','%s'
 				),
 				array( 
 					'%d','%d'

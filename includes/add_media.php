@@ -511,7 +511,7 @@ $vimeo_sort_dir_arr = array(
 <!--                     <tr valign="top" id="playing_length_field">
                         <th>Playing length</th>
                         <td>
-                            <input type="number" name="playing_length" min="0" step="1" placeholder="Enter length of playing in seconds" value="<?php if(isset($data['playing_length'])) echo ($data['playing_length']); ?>">
+                            <input type="number" name="playing_length" min="0" step="1" placeholder="Enter length of playing in seconds" value="<?php //if(isset($data['playing_length'])) echo ($data['playing_length']); ?>">
                         </td>
                     </tr> -->
                     
@@ -519,8 +519,8 @@ $vimeo_sort_dir_arr = array(
                         <th>Random Clip time</th>
                         <td>
                             <select id="random_clip_time" name="random_clip_time">
-                                <option value="0" <?php if(isset($data['random_clip_time']) && $data['random_clip_time'] == "0") echo 'selected' ?>>no</option>
-                                <option value="1" <?php if(isset($data['random_clip_time']) && $data['random_clip_time'] == "1") echo 'selected' ?>>yes</option>
+                                <option value="0" <?php //if(isset($data['random_clip_time']) && $data['random_clip_time'] == "0") echo 'selected' ?>>no</option>
+                                <option value="1" <?php //if(isset($data['random_clip_time']) && $data['random_clip_time'] == "1") echo 'selected' ?>>yes</option>
                             </select>
                         </td>
                     </tr> -->
@@ -534,12 +534,47 @@ $vimeo_sort_dir_arr = array(
                             </select>
                         </td>
                     </tr>
-
+					
                     <tr valign="top" id="random_clip_time_field">
                         <th>Random Clip time</th>
+						
+						<?php 
+							if($data['random_clip_time']){
+								 
+								$clip_time= unserialize($data['random_clip_time']);
+								$c = count($clip_time);  
+																 
+								for( $i=0; $i<$c; $i++ ){
+																	 
+									echo '<td>
+									<input type="number" name="random_clip_time[]" min="0.2" max="10800" step="0.01" placeholder="Enter Random Clip time" value="' . $clip_time[$i] . '">';
+									
+									if($i==0){
+									echo '<a href="javascript:void(0);" class="add_randombutton"><img src="https://www.wizps.com/wp-content/uploads/2019/09/plus-icon.png" width="20px" height="auto">
+									</a>';
+									}else{
+									echo '<a href="javascript:void(0);" class="remove_randombutton"><img src="https://www.wizps.com/wp-content/uploads/2019/09/remove.jpg" width="20px" height="auto"></a>';	
+									echo '</td>';
+									}
+								} 
+								
+								
+							}else{
+								echo '<td>
+                            <input type="number" name="random_clip_time[]" min="0.2" max="10800" step="0.01" placeholder="Enter Random Clip time" value="">
+							<a href="javascript:void(0);" class="add_randombutton"><img src="https://www.wizps.com/wp-content/uploads/2019/09/plus-icon.png" width="20px" height="auto">
+							</a>
+						</td>';
+							}
+						?>
+                        
+						
+                    </tr>
+					 <tr valign="top" id="random_clip_time_field">
+                        <th>Multiple Clip time</th>
                         <td>
-                            <input type="number" name="random clip time" min="0.2" max="10800" step="0.01" placeholder="Enter Random Clip time" value="<?php if(isset($data['random_clip_time'])) echo ($data['random_clip_time']); ?>">
-                        </td>
+                            <input type="checkbox" name="all_clip" id="all_clip" <?php if ($data['all_clip'] == 1) { echo "checked='checked'"; } ?> class="all_clip">
+						</td>
                     </tr>
 
                     <!---->
@@ -681,4 +716,39 @@ $vimeo_sort_dir_arr = array(
 	</form>
 
 </div>
+<script>
+jQuery(document).ready(function(){
 
+		var maxField = 50; 
+
+		var addButton = jQuery('.add_randombutton');  
+
+		var wrapper = jQuery('#random_clip_time_field'); 	
+		
+		var y = 1;
+     	
+		jQuery(addButton).click(function(){
+			
+			if(y < maxField){
+				y++;			
+				var fieldHTML ='<td><input type="number" name="random_clip_time[]" min="0.2" max="10800" step="0.01" placeholder="Enter Random Clip time" value=""><a href="javascript:void(0);" class="remove_randombutton"><img src="https://www.wizps.com/wp-content/uploads/2019/09/remove.jpg" width="20px" height="auto"></a></td>';
+				
+				jQuery(wrapper).append(fieldHTML);         
+			}     
+				
+		}); 
+		jQuery(wrapper).on('click', '.remove_randombutton', function(e){  
+			
+			e.preventDefault();     
+			
+			jQuery(this).parent('td').remove(); 
+			
+			y--;    
+
+		});
+					
+	});
+</script>
+<style>
+.form-table td{display:block;}
+</style>

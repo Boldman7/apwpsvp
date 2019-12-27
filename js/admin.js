@@ -2847,22 +2847,64 @@ jQuery(document).ready(function($) {
 	
 
 
+//Random Clip time
+	/* $('#shortcode_playlist').on('change',function(){
+		
+		var playlist_id = $('#shortcode_playlist').val();
+		$.ajax({    
+			type: "POST",
+			url: wpsvp_data.plugins_url + '/includes/data_display.php',             
+			data: { id: playlist_id},
+			success: function(response){                    
+				var obj = jQuery.parseJSON( response );
+				$('#shortcode_clip_time').empty();
+				var len = obj.length;
+				for (i = 0; i < len; i++){ 
+					$('#shortcode_clip_time').append($('<option>', { 
+							value: obj[i],
+							text : obj[i] 
+					}));
+				
+				}
+			}
+
+		});
+	}).change(); */
 
 
-	//shortcode
-	$('#shortcode_player, #shortcode_playlist').on('change',function(){
 
-		var player_id = $('#shortcode_player').val(), 
-		playlist_id = $('#shortcode_playlist').val();
+	//shortcode #shortcode_player, #shortcode_playlist, 
+	$('#shortcode_player, #shortcode_playlist' ).on('change',function(){
+
+		var player_id = $('#shortcode_player').val();
+		
+		var playlist_id = $('#shortcode_playlist').val();
+		
 		if(!player_id){
 			$('#shortcode_generator').text('Please create a player first!\n');
 		}else if(!playlist_id){
 			$('#shortcode_generator').text('Please create a playlist first!\n');
 		}else{
-			var shortcode = '[apwpsvp player_id="'+player_id+'" playlist_id="'+playlist_id+'"]';
-			$('#shortcode_generator').text(shortcode);
+			
+			$.ajax({    
+				type: "POST",
+				url: wpsvp_data.plugins_url + '/includes/data_display.php',             
+				data: { id: playlist_id},
+				success: function(response){
+					$('#shortcode_generator').empty();                    
+					var obj = jQuery.parseJSON( response );
+					var len = obj.length;
+					for (i = 0; i < len; i++){ 
+					
+					var shortcode = '[apwpsvp player_id="'+player_id+'" playlist_id="'+playlist_id+'" clip_time="'+obj[i]+'"]';
+						$('#shortcode_generator').append( shortcode );
+						$('#shortcode_generator').append( "<!--nextpage-->");
+					}
+				}
 
-            var shortcode2 = 'echo do_shortcode(\'[apwpsvp player_id="'+player_id+'" playlist_id="'+playlist_id+'"]\')';
+			});
+			
+			var shortcode2 = 'echo do_shortcode(\'[apwpsvp player_id="'+player_id+'" playlist_id="'+playlist_id+'"]\')';
             $('#shortcode_generator2').text(shortcode2);
 
 		}
@@ -2968,13 +3010,6 @@ jQuery(document).ready(function($) {
 
             alert("Error importing, please check browser console for messages!");
         }); 
-
-    }
-
-    
-
-    
-   
-	
-
+	}
 });
+
